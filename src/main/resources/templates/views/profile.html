@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User profile </title>
+    <div th:replace="fragments/css-links:: cssLinks"/>
+</head>
+<body>
+<div th:replace="fragments/header:: header"></div>
+
+
+<div class="container offset-md-1">
+    <!-- Start Student information table-->
+    <div class="media block-update-card mt-lg-1">
+
+        <div class="row">
+            <div class="media-body update-card-body ml-3">
+                <h4 class="media-heading mb-2">User Registration Information</h4>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th scope="row">First Name </th>
+                        <td colspan="4" th:text="${user.email}" >The First Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last Name </th>
+                        <td colspan="4" th:text="${user.firstName}" >The Last Name</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last Name </th>
+                        <td colspan="4" th:text="${user.lastName}" >The Student Gender</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--End Student information table-->
+
+    <!--Start registered course table-->
+    <div class="row">
+        <div class="col-sm-4">
+            <a class="col-sm-2" th:href="@{/users}">Back to users list</i></a>
+        </div>
+        <div class="col-sm-6"> <h4>Assigned  Tasks</h4> </div>
+    </div>
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="text-center">
+        <tr>
+            <th>Task ID Code</th>
+            <th> Task Description</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr align="center" th:each="task:${tasks}">
+            <td th:text="${task.id}" />
+            <td th:text="${task.description}" />
+            <td><a th:href="@{/tasks(email=${task.getUser().email})}">Remove task</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <!--End registered course table-->
+</div>
+    <br><br>
+</body>
+</html>
